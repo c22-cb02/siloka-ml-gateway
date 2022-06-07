@@ -1,0 +1,19 @@
+steps:
+  - name: gcr.io/cloud-builders/docker
+    args: ["build", "-t", "gcr.io/$PROJECT_ID/siloka-ml-gateway", "."]
+
+  - name: gcr.io/cloud-builders/gcloud
+    args:
+      [
+        "compute",
+        "instance-groups",
+        "managed",
+        "rolling-action",
+        "start-update",
+        "instance-group-ml-gateway",
+        "--max-surge=1",
+        "--zone=asia-southeast1-b",
+      ]
+
+images:
+  - gcr.io/$PROJECT_ID/siloka-ml-gateway
