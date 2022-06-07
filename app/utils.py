@@ -1,5 +1,28 @@
+import json
 import pickle
+
 from tensorflow import keras
+from google.cloud import storage
+
+def download_blob_from_bucket(bucket_name, source_blob_name, destination_file_name):
+    storage_client = storage.Client()
+
+    bucket = storage_client.bucket(bucket_name)
+
+    blob = bucket.blob(source_blob_name)
+    blob.download_to_filename(destination_file_name)
+
+    print(
+        "Downloaded storage object {} from bucket {} to local file {}.".format(
+            source_blob_name, bucket_name, destination_file_name
+        )
+    )
+
+def load_file(file_path):
+    with open(file_path, 'r') as file:
+        loaded_json = json.load(file)
+        
+    return loaded_json
 
 def seq_and_pad(sentences, tokenizer, padding, maxlen):
     """
