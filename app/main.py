@@ -17,12 +17,6 @@ load_dotenv()
 GOOGLE_APP_CREDENTIALS = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS")
 ML_STORAGE_BUCKET = "siloka-ml-resources"
 
-
-class MessagesReq(BaseModel):
-    messages: str
-
-app = FastAPI()
-
 # Download latest ml resources
 download_blob_from_bucket(ML_STORAGE_BUCKET, "chatbot-model.h5", "model/chatbot-model.h5")
 download_blob_from_bucket(ML_STORAGE_BUCKET, "tokenizer.pickle", "model/tokenizer.pickle")
@@ -37,6 +31,13 @@ labels = [obj["tag"] for obj in intents["intents"]]
 
 # Create a responses dictionary based on it's tag
 responses = {obj["tag"] : obj["responses"][0] for obj in intents["intents"]}
+
+
+class MessagesReq(BaseModel):
+    messages: str
+
+
+app = FastAPI()
 
 origins = ['*']
 
