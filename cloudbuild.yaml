@@ -9,7 +9,7 @@ steps:
         "instance-groups",
         "managed",
         "rolling-action",
-        "start-update",
+        "replace",
         "instance-group-ml-gateway",
         "--max-surge=1",
         "--zone=asia-southeast1-b",
