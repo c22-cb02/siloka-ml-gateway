@@ -132,3 +132,6 @@ dmypy.json
 *.h5
 *.pickle
 */intents.json
+
+# VSCode
+*.vscode
