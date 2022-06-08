@@ -2,10 +2,10 @@ FROM python:3.9
 
 WORKDIR /src
 
-COPY ./requirements.txt /src/requirements.txt
+COPY ./production_requirements.txt /src/production_requirements.txt
 COPY ./model /src/model
 
-RUN pip install --no-cache-dir --upgrade -r /src/requirements.txt
+RUN pip install --no-cache-dir --upgrade -r /src/production_requirements.txt
 
 COPY ./app /src/app
 
