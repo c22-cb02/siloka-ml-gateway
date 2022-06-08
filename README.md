@@ -2,15 +2,26 @@
 
 ## Development
 
-Create `.env` file and fill it with
-
-```
-GOOGLE_APPLICATION_CREDENTIALS='local/path/to/service_account_key.json'
-```
+1. Install [Poetry](https://python-poetry.org/docs/)
+2. Install dependencies
+   ```
+   poetry install
+   ```
+3. Create `.env` file and fill it with
+   ```
+   GOOGLE_APPLICATION_CREDENTIALS='local/path/to/service_account_key.json'
+   ```
 
 ### Running the Service without Container
 
 ```bash
+$ poetry run uvicorn app.main:app --reload
+```
+
+Or
+
+```bash
+$ poetry shell
 $ uvicorn app.main:app --reload
 ```
 
