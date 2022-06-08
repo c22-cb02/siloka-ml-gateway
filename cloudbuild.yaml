@@ -17,3 +17,7 @@ steps:
 
 images:
   - gcr.io/$PROJECT_ID/siloka-ml-gateway
+
+logsBucket: "gs://siloka-build-logg"
+options:
+  logging: GCS_ONLY
