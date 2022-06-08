@@ -21,7 +21,7 @@ def download_blob_from_bucket(bucket_name, source_blob_name, destination_file_na
 
 
 def load_file(file_path):
-    with open(file_path, "r") as file:
+    with open(file_path, "r", encoding="UTF-8") as file:
         loaded_json = json.load(file)
 
     return loaded_json
