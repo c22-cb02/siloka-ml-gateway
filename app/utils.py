@@ -21,13 +21,14 @@ def seq_and_pad(sentences, tokenizer, padding, maxlen):
 
     # Pad the sequences using the correct padding and maxlen
     padded_sequences = keras.preprocessing.sequence.pad_sequences(
-        sequences, maxlen=maxlen, padding=padding)
+        sequences, maxlen=maxlen, padding=padding
+    )
 
     return padded_sequences
 
 
 def load_tokenizer(tokenizer_file):
-    with open(tokenizer_file, 'rb') as tokenizer:
+    with open(tokenizer_file, "rb") as tokenizer:
         loaded_tokenizer = pickle.load(tokenizer)
 
     return loaded_tokenizer

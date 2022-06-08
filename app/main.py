@@ -5,12 +5,7 @@ from pydantic import BaseModel
 from dotenv import load_dotenv
 
 from .ml_model import predict_sentences
-from .utils import (
-    download_blob_from_bucket,
-    load_file,
-    load_model,
-    load_tokenizer
-)
+from .utils import download_blob_from_bucket, load_file, load_model, load_tokenizer
 
 
 load_dotenv()
@@ -19,15 +14,16 @@ ML_STORAGE_BUCKET = "siloka-ml-resources"
 
 # Download latest ml resources
 download_blob_from_bucket(
-    ML_STORAGE_BUCKET, "chatbot-model.h5", "model/chatbot-model.h5")
+    ML_STORAGE_BUCKET, "chatbot-model.h5", "model/chatbot-model.h5"
+)
 download_blob_from_bucket(
-    ML_STORAGE_BUCKET, "tokenizer.pickle", "model/tokenizer.pickle")
-download_blob_from_bucket(
-    ML_STORAGE_BUCKET, "intents.json", "model/intents.json")
+    ML_STORAGE_BUCKET, "tokenizer.pickle", "model/tokenizer.pickle"
+)
+download_blob_from_bucket(ML_STORAGE_BUCKET, "intents.json", "model/intents.json")
 
-model = load_model('./model/chatbot-model.h5')
-tokenizer = load_tokenizer('./model/tokenizer.pickle')
-intents = load_file('./model/intents.json')
+model = load_model("./model/chatbot-model.h5")
+tokenizer = load_tokenizer("./model/tokenizer.pickle")
+intents = load_file("./model/intents.json")
 
 # Take every tag labels from intents
 labels = [obj["tag"] for obj in intents["intents"]]
@@ -42,7 +38,7 @@ class MessagesReq(BaseModel):
 
 app = FastAPI()
 
-origins = ['*']
+origins = ["*"]
 
 app.add_middleware(
     CORSMiddleware,
@@ -60,15 +56,16 @@ async def root():
 
 @app.post("/predict/")
 async def predict_label(req: MessagesReq):
-    PADDING = 'post'
+    PADDING = "post"
     MAXLEN = 15
 
     predicted_tag, tag_percentage = predict_sentences(
-        [req.messages], model, tokenizer, labels, PADDING, MAXLEN)
+        [req.messages], model, tokenizer, labels, PADDING, MAXLEN
+    )
     predicted_response = responses[predicted_tag]
 
     return {
         "tag": predicted_tag,
         "accuracy": float(tag_percentage),
-        "predicted_response": predicted_response
+        "predicted_response": predicted_response,
     }
