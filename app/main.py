@@ -1,4 +1,5 @@
 import os
+from google.cloud import logging
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -7,6 +8,8 @@ from dotenv import load_dotenv
 from .ml_model import predict_sentences
 from .utils import download_blob_from_bucket, load_file, load_model, load_tokenizer
 
+client = logging.Client()
+client.setup_logging()
 
 load_dotenv()
 GOOGLE_APP_CREDENTIALS = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS")

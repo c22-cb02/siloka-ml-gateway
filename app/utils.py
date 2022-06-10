@@ -1,5 +1,6 @@
 import json
 import pickle
+import logging
 
 from tensorflow import keras
 from google.cloud import storage
@@ -13,10 +14,11 @@ def download_blob_from_bucket(bucket_name, source_blob_name, destination_file_na
     blob = bucket.blob(source_blob_name)
     blob.download_to_filename(destination_file_name)
 
-    print(
-        "Downloaded storage object {} from bucket {} to local file {}.".format(
-            source_blob_name, bucket_name, destination_file_name
-        )
+    logging.info(
+        "Downloaded storage object %s from bucket %s to local file %s.",
+        source_blob_name,
+        bucket_name,
+        destination_file_name,
     )
 
 
