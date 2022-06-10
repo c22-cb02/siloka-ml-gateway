@@ -51,8 +51,6 @@ def load_file(file_path):
     with open(file_path, "r", encoding="UTF-8") as file:
         loaded_json = json.load(file)
 
-    logging.info("")
-
     return loaded_json
 
 
