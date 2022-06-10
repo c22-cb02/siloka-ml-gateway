@@ -1,8 +1,9 @@
 import numpy as np
 
-from .utils import seq_and_pad
+from .utils import seq_and_pad, microbenchmark
 
 
+@microbenchmark
 def predict_sentences(sentence, model, tokenizer, labels, padding, maxlen):
     sentence_seq_pad = seq_and_pad(sentence, tokenizer, padding, maxlen)
 
