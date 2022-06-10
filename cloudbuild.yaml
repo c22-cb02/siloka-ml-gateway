@@ -20,4 +20,4 @@ images:
 
 logsBucket: "gs://siloka-build-logg"
 options:
-  logging: GCS_ONLY
+  logging: LEGACY
