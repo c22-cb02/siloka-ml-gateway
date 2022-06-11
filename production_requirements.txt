@@ -43,9 +43,18 @@ google-auth-oauthlib==0.4.6; python_version >= "3.7" \
 google-auth==2.7.0; python_version >= "3.7" and python_full_version < "3.0.0" or python_full_version >= "3.6.0" and python_version >= "3.7" \
     --hash=sha256:8a954960f852d5f19e6af14dd8e75c20159609e85d8db37e4013cc8c3824a7e1 \
     --hash=sha256:df549a1433108801b11bdcc0e312eaf0d5f0500db42f0523e4d65c78722e8475
+google-cloud-appengine-logging==1.1.2; python_version >= "3.6" \
+    --hash=sha256:ba77615c100f07edda91656ede1b7465907012b8663aad7c4e75ef9687994237 \
+    --hash=sha256:fe930e9dc5d77e8cb9940f8386965dd8f72d4d4ae2fc782e15637acb5ab585d5
+google-cloud-audit-log==0.2.2; python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.4.0" and python_version >= "3.6" \
+    --hash=sha256:6d89903848aee9817477ece306544851b903a5ec561da966bbba5a8d12509a4d \
+    --hash=sha256:80aa3816e85756ec9ba84f09fb4aae4a09ad9fd6637b8392ece42ad88f6e7efe
 google-cloud-core==2.3.0; python_version >= "3.7" \
     --hash=sha256:fdaa629e6174b4177c2d56eb8ab1ddd87661064d0a3e9bb06b62e4d7e2344669 \
     --hash=sha256:35900f614045a33d5208e1d50f0d7945df98ce088388ce7237e7a2db12d5656e
+google-cloud-logging==3.1.2; python_version >= "3.6" \
+    --hash=sha256:3ed00a8bd2076fee7a1dc053880fcb3c973184807e240f8c3c0929dd748eaf7f \
+    --hash=sha256:702b69b01c4b98c50a4e4e7cbe12309de8c6685e99ec100c0c902e1765a45e92
 google-cloud-storage==2.3.0; python_version >= "3.7" \
     --hash=sha256:f4cbb0de5e17228e9c09cdc897d81eaa70e2c396f58513f79de0e824584c8f5b \
     --hash=sha256:9a7b1d07d53bc1df5384a9906c1e6d9c920a2bdb5ffa5982d2c1d2bdaacd70c8
@@ -100,10 +109,16 @@ google-pasta==0.2.0; python_version >= "3.7" \
 google-resumable-media==2.3.3; python_version >= "3.7" \
     --hash=sha256:27c52620bd364d1c8116eaac4ea2afcbfb81ae9139fb3199652fcac1724bfb6c \
     --hash=sha256:5b52774ea7a829a8cdaa8bd2d4c3d4bc660c91b30857ab2668d0eb830f4ea8c5
-googleapis-common-protos==1.56.2; python_version >= "3.7" \
+googleapis-common-protos==1.56.2; python_version >= "3.7" and python_full_version < "3.0.0" or python_full_version >= "3.4.0" and python_version >= "3.7" \
     --hash=sha256:b09b56f5463070c2153753ef123f07d2e49235e89148e9b2459ec8ed2f68d7d3 \
     --hash=sha256:023eaea9d8c1cceccd9587c6af6c20f33eeeb05d4148670f2b0322dc1511700c
-grpcio==1.46.3; python_version >= "3.7" \
+grpc-google-iam-v1==0.12.4; python_version >= "3.6" \
+    --hash=sha256:3f0ac2c940b9a855d7ce7e31fde28bddb0d9ac362d32d07c67148306931a0e30 \
+    --hash=sha256:312801ae848aeb8408c099ea372b96d253077e7851aae1a9e745df984f81f20c
+grpcio-status==1.46.3; python_version >= "3.7" \
+    --hash=sha256:78442ac7d2813c56f9cc04f713efd7088596b10f88a4ddd09279211cc48402d5 \
+    --hash=sha256:5357dcd69e51ba3f7b86d57698bd44d2ef295528eb7219b237eb596183334d39
+grpcio==1.46.3; python_version >= "3.7" and (python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.4.0" and python_version >= "3.6") \
     --hash=sha256:4c05dbc164c2d3015109292ffeed68292807a6cb1225f9a36699bf2166634908 \
     --hash=sha256:c6a460b6aaf43428d48fececad864cc562458b944df80568e490d985d8576292 \
     --hash=sha256:707b85fa0cf606a9ab02246bd3142c76e154f1c30f00f7346b2afa3d0b315d5a \
@@ -236,7 +251,10 @@ opt-einsum==3.3.0; python_version >= "3.7" \
 packaging==21.3; python_version >= "3.7" \
     --hash=sha256:ef103e05f519cdc783ae24ea4e2e0f508a9c99b2d4969652eed6a2e1ea5bd522 \
     --hash=sha256:dd47c42927d89ab911e606518907cc2d3a1f38bbd026385970643f9c5b8ecfeb
-protobuf==3.19.4; python_version >= "3.7" \
+proto-plus==1.20.5; python_version >= "3.6" \
+    --hash=sha256:81794eb1be333c67986333948df70ebb8cdf538e039f8cfa92fd2a9d7176d405 \
+    --hash=sha256:fa29fec8a91cf178bc1d8bf9263769421d2dba7787eae42b67235676e211c158
+protobuf==3.19.4; python_version >= "3.7" and python_full_version < "3.0.0" or python_full_version >= "3.4.0" and python_version >= "3.7" \
     --hash=sha256:f51d5a9f137f7a2cec2d326a74b6e3fc79d635d69ffe1b036d39fc7d75430d37 \
     --hash=sha256:09297b7972da685ce269ec52af761743714996b4381c085205914c41fcab59fb \
     --hash=sha256:072fbc78d705d3edc7ccac58a62c4c8e0cec856987da7df8aca86e647be4e35c \

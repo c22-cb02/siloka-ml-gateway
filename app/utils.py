@@ -1,10 +1,36 @@
 import json
+import time
 import pickle
+import logging
+import functools
+from pyclbr import Function
 
 from tensorflow import keras
 from google.cloud import storage
 
 
+def microbenchmark(func: Function):
+    """Print the runtime of the decorated function"""
+
+    @functools.wraps(func)
+    def wrapper_microbenchmark(*args, **kwargs):
+        start_time = time.perf_counter()
+        value = func(*args, **kwargs)
+        end_time = time.perf_counter()
+        run_time = end_time - start_time
+        logging.info(
+            "Function %s(%s, %s) ran in %.4f seconds",
+            func.__name__,
+            args,
+            kwargs,
+            run_time,
+        )
+        return value
+
+    return wrapper_microbenchmark
+
+
+@microbenchmark
 def download_blob_from_bucket(bucket_name, source_blob_name, destination_file_name):
     storage_client = storage.Client()
 
@@ -13,10 +39,11 @@ def download_blob_from_bucket(bucket_name, source_blob_name, destination_file_na
     blob = bucket.blob(source_blob_name)
     blob.download_to_filename(destination_file_name)
 
-    print(
-        "Downloaded storage object {} from bucket {} to local file {}.".format(
-            source_blob_name, bucket_name, destination_file_name
-        )
+    logging.info(
+        "Downloaded storage object %s from bucket %s to local file %s.",
+        source_blob_name,
+        bucket_name,
+        destination_file_name,
     )
 
 
@@ -59,6 +86,7 @@ def load_tokenizer(tokenizer_file):
     return loaded_tokenizer
 
 
+@microbenchmark
 def load_model(model_file):
     loaded_model = keras.models.load_model(model_file)
 
