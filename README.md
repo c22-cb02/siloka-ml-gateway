@@ -55,3 +55,30 @@ $ docker build -t siloka-ml-gateway .
 ```bash
 $ docker run -d -p 80:80 siloka-ml-gateway
 ```
+
+## Load the ML model
+
+1. Open main.py and checks
+   ```
+   GOOGLE_APP_CREDENTIALS = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS")
+   ML_STORAGE_BUCKET = "siloka-ml-resources"
+   ```
+2. Change `ML_STORAGE_BUCKET` value to match your bucket name where you stored your model.
+3. Store your model, tokenizer, and intents in Google Cloud Storage Bucket.
+4. Make sure your model, tokenizer, and intents are named with `chatbot-model.h5`, `tokenizer.pickle`, and `intents.json`.
+   or
+   modify this snippet in main.py according to your needs
+
+   ```python
+   download_blob_from_bucket(
+       ML_STORAGE_BUCKET, "chatbot-model.h5", "model/chatbot-model.h5"
+   )
+   download_blob_from_bucket(
+       ML_STORAGE_BUCKET, "tokenizer.pickle", "model/tokenizer.pickle"
+   )
+   download_blob_from_bucket(ML_STORAGE_BUCKET, "intents.json", "model/intents.json")
+
+   model = load_model("./model/chatbot-model.h5")
+   tokenizer = load_tokenizer("./model/tokenizer.pickle")
+   intents = load_file("./model/intents.json")
+   ```
